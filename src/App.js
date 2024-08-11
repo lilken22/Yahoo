@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Yahoo from './Component/Yahoo'; // Adjust the path as needed
+import Yahoo from './Component/Yahoo'; 
 // import  Nav  from "./Component/Nav.js";
 import './index.css';
+import YahooPassword from './Component/YahooPassword';
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     {/* <Nav /> */}
       <Routes>
         <Route path="/" element={<Yahoo />} />
-        {/* Add more routes here if needed */}
+        <Route path="/yahoopassword" element={<YahooPassword />} />
       </Routes>
     </div>
   </Router>

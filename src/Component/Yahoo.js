@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import yahooLogo from '../Images/yahoo_logo.png';
 import { FcGoogle } from "react-icons/fc";
 import { Link } from 'react-router-dom';
-// import googleLogo from '../image/google3.png';
 
 const YahooForm = () => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
-    const [isFocused, setIsFocused] = useState(false);
-    const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
 
+  const handleNextClick = (e) => {
+    e.preventDefault(); // Prevent the form from submitting
+    navigate('/yahoopassword'); // Navigate to the YahooPassword page
+  };
 
   return (
     <div className="bg-white min-h-screen flex flex-col items-center">
-      <div className="w-full flex justify-between items-center p-4  ">
+      <div className="w-full flex justify-between items-center p-4">
         <img src={yahooLogo} alt="Yahoo" className="w-36" />
         <div className="flex space-x-4">
           <Link to="#help" className="text-blue-600 hover:text-blue-800">Help</Link>
@@ -33,7 +38,7 @@ const YahooForm = () => {
           <p className="text-center mt-2">using your Yahoo account</p>
 
           <div 
-            className="relative w-full mt-6 p-2  focus-within:border-blue-500"
+            className="relative w-full mt-6 p-2 focus-within:border-blue-500"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           >
@@ -50,17 +55,18 @@ const YahooForm = () => {
             ></div>
           </div>
              
-          <hr className="my-4" />
+          <hr className="my-4 cursor-pointer" />
           <button 
             type="submit" 
             className="w-full bg-blue-500 text-white py-2 rounded-full font-bold hover:bg-blue-700"
+            onClick={handleNextClick} // Handle the click event to navigate
           >
             Next
           </button>
           <div className="flex justify-between items-center mt-4">
             <label className="flex items-center">
               <input type="checkbox" name="staySignedIn" defaultChecked className="mr-2" />
-             <p className='text-blue-600 hover:text-blue-800'>Stay Signed In</p> 
+              <p className='text-blue-600 hover:text-blue-800'>Stay Signed In</p> 
             </label>
             <Link to="#" className="text-blue-600 hover:text-blue-800">Forgot username?</Link>
           </div>
@@ -73,7 +79,7 @@ const YahooForm = () => {
             <p>Or, continue with</p>
           </div>
           <button className="w-full flex items-center justify-center border-2 border-gray-300 py-2 rounded-full mt-4 hover:border-blue-500">
-          <FcGoogle  className="w-8 mr-2"/> 
+            <FcGoogle className="w-8 mr-2"/> 
             <span className="font-bold text-gray-700">Google</span>
           </button>
         </form>
